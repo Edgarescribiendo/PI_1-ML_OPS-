@@ -12,4 +12,4 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-PI_SMLOps-env/
+my_env/
