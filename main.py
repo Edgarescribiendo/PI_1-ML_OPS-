@@ -18,7 +18,8 @@ app = FastAPI()
 def root():
     return {'message':'Welcome!'}
 
-''' 1) Cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora. '''
+''' 1) Cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora
+       Number of items and percentage of Free content per year by developer company '''
 
 @app.get("/developer/{desarrollador}")
 async def desarrollador(desarrollador:str):
@@ -28,8 +29,8 @@ async def desarrollador(desarrollador:str):
     except Exception as e:
         return {"error": str(e)}
     
-''' 2) Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación 
-    en base a reviews.recommend y cantidad de items.'''
+''' 2) Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.
+       It should return the amount of money spent by the user, the recommendation percentage based on reviews.recommend and the number of items.'''
 
 @app.get("/userdata/{User_id}")
 def user(User_id:str):
@@ -39,9 +40,8 @@ def user(User_id:str):
     except Exception as e:
         return {'error': str(e)}    
 
-''' 3) Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista
-    de la acumulación de horas jugadas por año de lanzamiento. '''
-
+''' 3) Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.
+       It should return the user who accumulates the most hours played for the given genre and a list of the accumulation of hours played by year of release '''
 @app.get("/usergenre/{genre}")
 def genre(genre: str):
     try:
@@ -50,8 +50,8 @@ def genre(genre: str):
     except Exception as e:
         return {'error': str(e)}  
     
-''' 4) Devuelve el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el 
-    año dado. (reviews.recommend = True y comentarios positivos)'''
+''' 4) Devuelve el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos)
+       Return the top 3 developers with the MOST user-recommended games for the given year. (reviews.recommend = True and positive reviews)'''
 
 @app.get("/best_developer_year/{año}")
 async def Best_developer_year(year: int):
@@ -64,7 +64,11 @@ async def Best_developer_year(year: int):
 
 ''' 5) Según el desarrollador, se devuelve un diccionario con el nombre del desarrollador como
       llave y una lista con la cantidad total de registros de reseñas de usuarios que se 
-      encuentren categorizados con un análisis de sentimiento como valor positivo o negativo. '''
+      encuentren categorizados con un análisis de sentimiento como valor positivo o negativo. 
+      
+      According to the developer, a dictionary is returned with the developer name as the key and a
+      list with the total number of user review records that are categorized with a sentiment analysis 
+      as a positive or negative value.'''
 
 @app.get("/developer_reviews_analysis/{developer}")
 def dev_reviews_analysis(developer: str):
@@ -74,8 +78,12 @@ def dev_reviews_analysis(developer: str):
     except Exception as e:
         return {'error': str(e)}  
     
-'''  6ta función - Machine Learning Ingresando el id de producto, deberíamos recibir una lista con 5 
-    juegos recomendados similares al ingresado.'''
+''' 6) Machine Learning Ingresando el id de producto, deberíamos recibir una lista con 5 
+       juegos recomendados similares al ingresado.
+       
+       Machine Learning: By entering the product id, we should receive a list of 5
+       recommended games similar to the one entered'''
+
 @app.get("/recomendacion_juego/{Id_item}")
 def get_recomedacion_juego(Id_item: int):
     try:
@@ -83,7 +91,6 @@ def get_recomedacion_juego(Id_item: int):
         return result
     except Exception as e:
         return {'error': str(e)}  
-
 
 @app.get("/recomendacion_usuario/{id_usuario}")
 def get_recomedacion_usuario (id_usuario: str):
