@@ -56,8 +56,7 @@ def genre(genre: str):
 @app.get("/best_developer_year/{año}")
 async def Best_developer_year(year: int):
     try:
-        year_int = int(year)  # Convertir el año a un entero
-        result2 = best_developer_year(year_int)
+        result2 = best_developer_year(year)
         return result2
     except Exception as e:
         return {"error": str(e)}   
@@ -71,6 +70,25 @@ async def Best_developer_year(year: int):
 def dev_reviews_analysis(developer: str):
     try:
         result = developer_reviews_analysis(developer)
+        return result
+    except Exception as e:
+        return {'error': str(e)}  
+    
+'''  6ta función - Machine Learning Ingresando el id de producto, deberíamos recibir una lista con 5 
+    juegos recomendados similares al ingresado.'''
+@app.get("/recomendacion_juego/{Id_item}")
+def get_recomedacion_juego(Id_item: int):
+    try:
+        result = recomendacion_juego((Id_item))
+        return result
+    except Exception as e:
+        return {'error': str(e)}  
+
+
+@app.get("/recomendacion_usuario/{id_usuario}")
+def get_recomedacion_usuario (id_usuario: str):
+    try:
+        result= recomendacion_usuario(id_usuario)
         return result
     except Exception as e:
         return {'error': str(e)}  
