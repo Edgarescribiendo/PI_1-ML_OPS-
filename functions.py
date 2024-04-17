@@ -13,6 +13,7 @@ data_steam['release_year'] = data_steam['release_year'].astype(int)
 
 
 
+
 ''' 1) Cantidad de items y porcentaje de contenido Free por año según empresa
        desarrolladora'''
 
@@ -154,8 +155,10 @@ def developer_reviews_analysis(developer: str):
 
 def recomendacion_juego(Id_item):
     try: 
+        Id_item = str(Id_item)
         # se carga los datasets que se va a utilizar para dos dataframes distintos
         data1 = pd.read_parquet("ML/steam_games.parquet")
+        
         data_games_steam = pd.read_parquet("ML/steam_id.parquet")
 
         # crear una matriz de características de los juegos
